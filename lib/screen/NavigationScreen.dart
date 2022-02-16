@@ -8,15 +8,22 @@ class NavigationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        title: Image.asset(IconsPath.logo,
-            width: 300 / Get.mediaQuery.devicePixelRatio),
-      ),
-      body: _body(),
-      bottomNavigationBar: _bnb(),
-    );
+    // WillPopScope - 뒤로가기 버튼을 관리하고 history를 적용하기 위해 사용
+    return WillPopScope(
+        child: Scaffold(
+          appBar: AppBar(
+            elevation: 0,
+            title: Image.asset(IconsPath.logo,
+                width: 300 / Get.mediaQuery.devicePixelRatio),
+          ),
+          body: _body(),
+          bottomNavigationBar: _bnb(),
+        ),
+        // 뒤로가기 버튼을 눌렀을 경우
+        onWillPop: () async {
+          bool result = await NavigationController.to.willPopAction();
+          return result;
+        });
   }
 
   Widget _body() {
