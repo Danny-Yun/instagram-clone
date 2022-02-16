@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:instagram_clone/controller/NavigationController.dart';
-import 'package:instagram_clone/util/ImageData.dart';
+import 'package:instagram_clone/widgets/ImageData.dart';
 
 class NavigationScreen extends StatelessWidget {
   const NavigationScreen({Key? key}) : super(key: key);
