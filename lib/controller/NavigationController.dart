@@ -1,5 +1,9 @@
+import 'dart:io';
+
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:instagram_clone/router/RoutePage.dart';
+import 'package:instagram_clone/widgets/MessagePopup.dart';
 
 enum PAGE { home, search, upload, active, profile }
 
@@ -46,6 +50,20 @@ class NavigationController extends GetxController {
   // 뒤로가기 버튼을 눌렀을 경우
   Future<bool> willPopAction() async {
     if (bottomHistory.length == 1) {
+      // 나가기 전 확인하는 팝업메시지
+      showDialog(
+        context: Get.context!,
+        builder: (context) => MessagePopup(
+          title: '시스템',
+          message: '앱을 종료하시겠습니까?',
+          okCallback: () {
+            exit(0);
+          },
+          cancelCallback: () {
+            Get.back();
+          },
+        ),
+      );
       print('Exit');
       return true;
     } else {
