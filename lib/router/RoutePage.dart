@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:instagram_clone/binding/NavigationControllerBinding.dart';
+import 'package:instagram_clone/screen/HomeScreen.dart';
 import 'package:instagram_clone/screen/NavigationScreen.dart';
 import 'package:instagram_clone/screen/UploadScreen.dart';
 
@@ -21,7 +22,7 @@ class RoutePage {
     ),
     GetPage(
       name: HOME_ROUTE,
-      page: () => NavigationScreen(),
+      page: () => HomeScreen(),
     ),
     GetPage(
       name: UPLOAD_ROUTE,

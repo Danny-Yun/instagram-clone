@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:instagram_clone/controller/NavigationController.dart';
+import 'package:instagram_clone/screen/HomeScreen.dart';
 import 'package:instagram_clone/widgets/ImageData.dart';
 
 class NavigationScreen extends StatelessWidget {
@@ -10,20 +11,16 @@ class NavigationScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     // WillPopScope - 뒤로가기 버튼을 관리하고 history를 적용하기 위해 사용
     return WillPopScope(
-        child: Scaffold(
-          appBar: AppBar(
-            elevation: 0,
-            title: Image.asset(IconsPath.logo,
-                width: 300 / Get.mediaQuery.devicePixelRatio),
-          ),
-          body: _body(),
-          bottomNavigationBar: _bnb(),
-        ),
-        // 뒤로가기 버튼을 눌렀을 경우
-        onWillPop: () async {
-          bool result = await NavigationController.to.willPopAction();
-          return result;
-        });
+      child: Scaffold(
+        body: _body(),
+        bottomNavigationBar: _bnb(),
+      ),
+      // 뒤로가기 버튼을 눌렀을 경우
+      onWillPop: () async {
+        bool result = await NavigationController.to.willPopAction();
+        return result;
+      },
+    );
   }
 
   Widget _body() {
@@ -31,10 +28,7 @@ class NavigationScreen extends StatelessWidget {
       () => IndexedStack(
         index: NavigationController.to.pageIdx.value,
         children: [
-          Container(
-            color: Colors.blueGrey,
-            child: Center(child: Text('홈')),
-          ),
+          const HomeScreen(),
           Container(
             color: Colors.blueGrey,
             child: Center(child: Text('검색')),
@@ -56,6 +50,7 @@ class NavigationScreen extends StatelessWidget {
     );
   }
 
+  // 네비게이션 바
   Widget _bnb() {
     return Obx(
       () => BottomNavigationBar(
