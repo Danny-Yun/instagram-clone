@@ -33,7 +33,7 @@ class Avatar extends StatelessWidget {
   // 스토리가 있는 아바타
   Widget AvatarType1() {
     return Container(
-      margin: const EdgeInsets.fromLTRB(12, 8, 0, 8),
+      margin: const EdgeInsets.fromLTRB(6, 8, 6, 4),
       padding: const EdgeInsets.all(2),
       decoration: const BoxDecoration(
         gradient: LinearGradient(
@@ -43,7 +43,7 @@ class Avatar extends StatelessWidget {
         shape: BoxShape.circle,
       ),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(65),
+        borderRadius: BorderRadius.circular(size),
         child: Container(
           decoration: BoxDecoration(
             color: Colors.white,
@@ -69,12 +69,8 @@ class Avatar extends StatelessWidget {
   // 스토리가 없는 아바타
   Widget AvatarType2() {
     return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        shape: BoxShape.circle,
-      ),
       padding: const EdgeInsets.all(2),
-      margin: const EdgeInsets.fromLTRB(10, 8, 0, 8),
+      margin: const EdgeInsets.fromLTRB(8, 8, 7, 4),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(size),
         child: Container(

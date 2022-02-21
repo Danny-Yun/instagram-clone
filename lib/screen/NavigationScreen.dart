@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:instagram_clone/controller/NavigationController.dart';
@@ -85,7 +86,10 @@ class NavigationScreen extends StatelessWidget {
           BottomNavigationBarItem(
             icon: Padding(
               padding: const EdgeInsets.only(top: 3),
-              child: CircleAvatar(radius: 11),
+              child: CircleAvatar(
+                radius: 13,
+                backgroundImage: AssetImage('assets/images/profile.jpg'),
+              ),
             ),
             label: '',
           ),
