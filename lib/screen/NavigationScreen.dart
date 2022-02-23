@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:instagram_clone/controller/NavigationController.dart';
 import 'package:instagram_clone/screen/HomeScreen.dart';
+import 'package:instagram_clone/screen/SearchScreen.dart';
 import 'package:instagram_clone/widgets/ImageData.dart';
 
 class NavigationScreen extends StatelessWidget {
@@ -30,10 +31,7 @@ class NavigationScreen extends StatelessWidget {
         index: NavigationController.to.pageIdx.value,
         children: [
           const HomeScreen(),
-          Container(
-            color: Colors.blueGrey,
-            child: Center(child: Text('검색')),
-          ),
+          const SearchScreen(),
           Container(
             color: Colors.blueGrey,
             child: Center(child: Text('업로드')),

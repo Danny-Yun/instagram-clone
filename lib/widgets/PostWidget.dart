@@ -15,7 +15,6 @@ class Post extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           _header(),
-          SizedBox(height: 7),
           _image(),
           _icons(),
           _infoDescription(),
@@ -27,25 +26,28 @@ class Post extends StatelessWidget {
   }
 
   Widget _header() {
-    return Row(
-      children: [
-        Avatar(
-          avatarType: TYPE.hasStory,
-          thumbPath:
-              'https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
-          size: 32,
-        ),
-        Text(
-          'nickname',
-          style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15),
-        ),
-        Spacer(),
-        GestureDetector(
-          onTap: () {},
-          child: Icon(Icons.more_horiz, size: 22),
-        ),
-        SizedBox(width: 13),
-      ],
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 7.0),
+      child: Row(
+        children: [
+          Avatar(
+            avatarType: TYPE.hasStory,
+            thumbPath:
+                'https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
+            size: 32,
+          ),
+          Text(
+            'nickname',
+            style: TextStyle(fontWeight: FontWeight.w500, fontSize: 15),
+          ),
+          Spacer(),
+          GestureDetector(
+            onTap: () {},
+            child: Icon(Icons.more_horiz, size: 22),
+          ),
+          SizedBox(width: 13),
+        ],
+      ),
     );
   }
 
