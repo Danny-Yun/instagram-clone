@@ -1,7 +1,35 @@
-import 'package:flutter/material.dart';
+import 'dart:math';
 
-class SearchScreen extends StatelessWidget {
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:quiver/iterables.dart';
+
+class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);
+
+  @override
+  State<SearchScreen> createState() => _SearchScreenState();
+}
+
+class _SearchScreenState extends State<SearchScreen> {
+  List<List<int>> groupBox = [[], [], []];
+  List<int> groupIndex = [0, 0, 0];
+
+  @override
+  void initState() {
+    super.initState();
+    for (var i = 0; i < 100; i++) {
+      var gridIndex = groupIndex.indexOf(min<int>(groupIndex)!);
+      var size = 1;
+      if (gridIndex != 1) {
+        size = Random().nextInt(100) % 2 == 0 ? 1 : 2;
+      }
+      groupBox[gridIndex].add(size);
+      groupIndex[gridIndex] += size;
+    }
+    print(groupBox);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -15,6 +43,7 @@ class SearchScreen extends StatelessWidget {
           ],
         ),
       ),
+      resizeToAvoidBottomInset: false,
     );
   }
 
@@ -53,6 +82,35 @@ class SearchScreen extends StatelessWidget {
   }
 
   Widget _body() {
-    return Container();
+    return Expanded(
+      child: SingleChildScrollView(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: List.generate(
+            groupBox.length,
+            (index) => Expanded(
+              child: Column(
+                children: List.generate(
+                  groupBox[index].length,
+                  (value) => Container(
+                    height: Get.width * 0.33 * groupBox[index][value],
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.white),
+                      color: Colors
+                          .primaries[Random().nextInt(Colors.primaries.length)],
+                    ),
+                    child: CachedNetworkImage(
+                      imageUrl:
+                          'https://images.pexels.com/photos/2205647/pexels-photo-2205647.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ).toList(),
+              ),
+            ),
+          ).toList(),
+        ),
+      ),
+    );
   }
 }
