@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:instagram_clone/binding/NavigationControllerBinding.dart';
 import 'package:instagram_clone/screen/NavigationScreen.dart';
+import 'package:instagram_clone/screen/SearchFocusScreen.dart';
 import 'package:instagram_clone/screen/UploadScreen.dart';
 
 class RoutePage {
@@ -8,6 +9,7 @@ class RoutePage {
 
   static const String NAVIGATION_ROUTE = "/navigation";
   static const String UPLOAD_ROUTE = "/upload";
+  static const String SEARCH_FOCUS = "/searchFocus";
 
   static final List<GetPage> getPageList = [
     GetPage(
@@ -19,6 +21,10 @@ class RoutePage {
       name: UPLOAD_ROUTE,
       page: () => UploadScreen(),
       transition: Transition.leftToRightWithFade,
+    ),
+    GetPage(
+      name: SEARCH_FOCUS,
+      page: () => SearchFocusScreen(),
     ),
   ];
 }
