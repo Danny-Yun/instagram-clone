@@ -13,6 +13,9 @@ class NavigationController extends GetxController {
   // 히스토리를 저장하는 리스트
   List<int> bottomHistory = [0];
 
+  GlobalKey<NavigatorState> searchPageNavigationKey =
+      GlobalKey<NavigatorState>();
+
   void changeIndex(int index, {bool hasGesture = true}) {
     var page = PAGE.values[index];
     switch (page) {
@@ -67,6 +70,12 @@ class NavigationController extends GetxController {
       print('Exit');
       return true;
     } else {
+      var page = PAGE.values[bottomHistory.last];
+      if (page == PAGE.search) {
+        var value = await searchPageNavigationKey.currentState!.maybePop();
+        if (value) return false;
+      }
+
       // 최신 히스토리 삭제 후
       bottomHistory.removeLast();
       print('delete - $bottomHistory');

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:instagram_clone/controller/NavigationController.dart';
 import 'package:instagram_clone/widgets/ImageData.dart';
 
 class SearchFocusScreen extends StatefulWidget {
@@ -42,7 +43,7 @@ class _SearchFocusScreenState extends State<SearchFocusScreen>
       elevation: 0,
       // 뒤로가기 버튼
       leading: GestureDetector(
-        onTap: Get.back,
+        onTap: () => NavigationController.to.willPopAction(),
         child: Padding(
           padding: const EdgeInsets.all(15.0),
           child: ImageData(IconsPath.backBtnIcon),

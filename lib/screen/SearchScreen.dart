@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:instagram_clone/router/RoutePage.dart';
+import 'package:instagram_clone/screen/SearchFocusScreen.dart';
 import 'package:quiver/iterables.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -54,7 +55,13 @@ class _SearchScreenState extends State<SearchScreen> {
         Expanded(
           child: GestureDetector(
             onTap: () {
-              RoutePage.movePage(RoutePage.SEARCH_FOCUS);
+              // RoutePage.movePage(RoutePage.SEARCH_FOCUS);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const SearchFocusScreen(),
+                ),
+              );
             },
             child: Container(
               padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 10),

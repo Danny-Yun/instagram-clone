@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:instagram_clone/controller/NavigationController.dart';
@@ -31,7 +30,14 @@ class NavigationScreen extends StatelessWidget {
         index: NavigationController.to.pageIdx.value,
         children: [
           const HomeScreen(),
-          const SearchScreen(),
+          Navigator(
+            key: NavigationController.to.searchPageNavigationKey,
+            onGenerateRoute: (RouteSetting) {
+              return MaterialPageRoute(
+                builder: (context) => const SearchScreen(),
+              );
+            },
+          ),
           Container(
             color: Colors.blueGrey,
             child: Center(child: Text('업로드')),
