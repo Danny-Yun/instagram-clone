@@ -53,8 +53,16 @@ class Post extends StatelessWidget {
 
   Widget _image() {
     return CachedNetworkImage(
-        imageUrl:
-            'https://images.pexels.com/photos/11041568/pexels-photo-11041568.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500');
+      fadeInDuration: Duration(seconds: 1),
+      fadeOutDuration: Duration(seconds: 1),
+      filterQuality: FilterQuality.high,
+      fit: BoxFit.fitWidth,
+      progressIndicatorBuilder: (context, url, downloadProgress) => Center(
+        child: CircularProgressIndicator(value: downloadProgress.progress),
+      ),
+      imageUrl:
+          'https://images.pexels.com/photos/11041568/pexels-photo-11041568.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+    );
   }
 
   Widget _icons() {
