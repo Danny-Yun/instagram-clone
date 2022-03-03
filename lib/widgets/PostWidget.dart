@@ -5,7 +5,16 @@ import 'package:instagram_clone/widgets/AvatarWidget.dart';
 import 'package:instagram_clone/widgets/ImageData.dart';
 
 class Post extends StatelessWidget {
-  const Post({Key? key}) : super(key: key);
+  Post(
+      {required this.postImage,
+      required this.friendImage,
+      required this.size,
+      Key? key})
+      : super(key: key);
+
+  var postImage;
+  var friendImage;
+  double size;
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +41,7 @@ class Post extends StatelessWidget {
         children: [
           Avatar(
             avatarType: TYPE.hasStory,
-            thumbPath:
-                'https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
+            thumbPath: friendImage,
             size: 32,
           ),
           Text(
@@ -53,15 +61,14 @@ class Post extends StatelessWidget {
 
   Widget _image() {
     return CachedNetworkImage(
-      fadeInDuration: Duration(seconds: 1),
-      fadeOutDuration: Duration(seconds: 1),
+      width: size,
+      height: size,
+      fadeInDuration: Duration(milliseconds: 500),
+      fadeOutDuration: Duration(milliseconds: 500),
       filterQuality: FilterQuality.high,
-      fit: BoxFit.fitWidth,
-      progressIndicatorBuilder: (context, url, downloadProgress) => Center(
-        child: CircularProgressIndicator(value: downloadProgress.progress),
-      ),
-      imageUrl:
-          'https://images.pexels.com/photos/11041568/pexels-photo-11041568.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+      fit: BoxFit.cover,
+      imageUrl: postImage,
+      errorWidget: (context, url, error) => Icon(Icons.error),
     );
   }
 

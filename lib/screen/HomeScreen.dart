@@ -4,8 +4,39 @@ import 'package:instagram_clone/widgets/AvatarWidget.dart';
 import 'package:instagram_clone/widgets/ImageData.dart';
 import 'package:instagram_clone/widgets/PostWidget.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  var storyImage;
+  var profileImage;
+  var postImage;
+  var friendImage;
+
+  @override
+  void initState() {
+    _init();
+    super.initState();
+  }
+
+  _init() {
+    _images();
+  }
+
+  _images() {
+    storyImage =
+        'http://static01.nyt.com/images/2012/02/02/sports/DUKE/DUKE-articleLarge.jpg?quality=75&auto=webp&disable=upscale';
+    postImage =
+        'https://i.pinimg.com/originals/b4/23/08/b4230802ec5854745d89b1f0a186bfd5.jpg';
+    profileImage =
+        'https://images.pexels.com/photos/11146073/pexels-photo-11146073.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500';
+    friendImage =
+        'https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,8 +86,7 @@ class HomeScreen extends StatelessWidget {
               children: [
                 Avatar(
                   avatarType: TYPE.hasStory,
-                  thumbPath:
-                      'http://static01.nyt.com/images/2012/02/02/sports/DUKE/DUKE-articleLarge.jpg?quality=75&auto=webp&disable=upscale',
+                  thumbPath: storyImage,
                 ),
                 Text(
                   'riudiux',
@@ -78,8 +108,7 @@ class HomeScreen extends StatelessWidget {
           children: [
             Avatar(
               avatarType: TYPE.noStory,
-              thumbPath:
-                  'https://images.pexels.com/photos/11146073/pexels-photo-11146073.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500',
+              thumbPath: profileImage,
               size: 67,
             ),
             Positioned(
@@ -106,7 +135,14 @@ class HomeScreen extends StatelessWidget {
   // 게시물
   Widget _postList() {
     return Column(
-      children: List.generate(50, (index) => Post()),
+      children: List.generate(
+        50,
+        (index) => Post(
+          postImage: postImage,
+          friendImage: friendImage,
+          size: MediaQuery.of(context).size.width,
+        ),
+      ),
     );
   }
 }
